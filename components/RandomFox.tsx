@@ -1,11 +1,9 @@
 // import type { FunctionComponent, FC } from "react"
 
-//* generate a random function between 1 and 123
-const random = () => Math.floor(Math.random() * 123)+ 1;
+type Props = { image : string};
 
 //? MEJOR FORMA
-export const RandomFox = (): JSX.Element => { // Forma explicita (Tipando lo que retorna la funcion)
-    const image: string = `https://randomfox.ca/images/${random()}.jpg`;
+export const RandomFox = ({image}: Props ): JSX.Element => { // Forma explicita (Tipando lo que retorna la funcion)
     return <img width={320} height="auto" src={image} className="rounded" />;
 };
 
