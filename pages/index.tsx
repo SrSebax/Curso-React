@@ -1,8 +1,8 @@
-import { RandomFox } from "../components/RandomFox";
+import { LazyImage } from "../components/RandomFox";
 import { MouseEventHandler, useState } from "react";
 
-//* Generate a random function between 1 and 123
-const random = () => Math.floor(Math.random() * 123) + 1;
+//* Generate a random function between 1 and 122
+const random = () => Math.floor(Math.random() * 122) + 1;
 
 //* Type Array
 type ImageItem = { id: string; url: string };
@@ -31,9 +31,18 @@ export default function Home() {
       <main>
         <h1 className="text-3xl font-bold underline">Random Fox</h1>
         <button onClick={addNewFox}>Agregar imagen</button>
-        {images.map(({ id, url }) => (
+        {images.map(({ id, url }, index) => (
           <div key={id} className="p-4">
-            <RandomFox image={url} />
+            <LazyImage 
+              src={url}
+              width={320}
+              height="auto"
+              className="rounded bg-gray-300"
+              onClick={() => console.log("Hi")}
+              onLazyLoad={(img) => {
+                console.log(`Image #${index + 1} cargada. Nodo:`, img);
+              }} 
+              />
           </div>
         ))}
       </main>
